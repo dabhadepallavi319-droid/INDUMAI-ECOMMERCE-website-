@@ -3,7 +3,7 @@ import pandas as pd
 from flask import Flask, render_template, request, redirect, flash, url_for, session, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 import mysql.connector
-import seed_analysis
+
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
