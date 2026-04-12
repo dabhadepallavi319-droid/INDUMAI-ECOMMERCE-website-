@@ -21,9 +21,10 @@ WHERE state='Maharashtra'
 # Use connection in a context manager style
 try:
     db = get_db_connection()
-    df = pd.read_sql(query, db)
-finally:
-    db.close()  # always close connection
+    # your logic
+    db.close()
+except:
+    print("Database connection failed")
 
 # Group data region wise
 region_data = df.groupby(['district','product_name'])['quantity'].sum().reset_index()
