@@ -3,7 +3,6 @@ import pandas as pd
 from flask import Flask, render_template, request, redirect, flash, url_for, session, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 import mysql.connector
-from seed_analysis import run_analysis
 
 from flask import Flask, jsonify, request
 
@@ -11,12 +10,14 @@ app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 client = razorpay.Client(auth=("rzp_test_SZ5eFb8k70e4QJ", "DLlly6UFMa2Lk93ZjBxpr3Pu"))
 # ---------------- MYSQL CONNECTION HELPER ----------------
+import os
+
 def get_db_connection():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="its.pdv.0410",
-        database="indumai"
+        host=os.environ.get("mysql.railway.internal"),
+        user=os.environ.get("root"),
+        password=os.environ.get("root123"),
+        database=os.environ.get("railway")
     )
 # ---------------- HELPER FUNCTIONS ----------------
 
